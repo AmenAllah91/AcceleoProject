@@ -1,0 +1,118 @@
+[comment encoding = UTF-8 /]
+[module implementServicePermission('http://www.businessdecision.fr/Generator')]
+[import org::bd::pfe::generator::persistance::packagePath /]
+
+[template public generateImplementServicePermission(persistance :PersistanceObject)]
+
+[file('/pfe-service/src/main/java/'.concat(persistance.eContainer(PersistanceModel).eContainer(Application)._package.convertPackageToPath() .concat('/implement/')).concat('PermissionServiceImplement').concat('.java'),false,'UTF-8')]
+package [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.implement')/];
+
+import java.util.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.repository').concat('.PermissionRepository')/];
+import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.persistance').concat('.Permission')/];
+import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.persistance').concat('.PermissionPK')/];
+import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.persistance').concat('.Privilege')/];
+import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.persistance.').concat(persistance.name.toUpperFirst())/];
+import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.service')/].PermissionService;
+
+
+@Service
+public class PermissionServiceImplement implements PermissionService {
+
+@Autowired
+	PermissionRepository permissionRepository;
+
+
+	public PermissionServiceImplement () {
+		super();
+	}
+    
+    Permission permission = new Permission() ;
+	
+    @Autowired
+	PermissionRepository repository ;
+
+    @Transactional
+	public Boolean createPermission(Permission permission){
+		permissionRepository.save(permission);
+		return true;
+	}
+	
+	@Transactional
+	public Boolean updatePermission(Permission permission){
+		permissionRepository.save(permission);
+		return true;
+	}
+	
+	@Transactional
+	 public Boolean deletePermission(Permission permission){
+		permissionRepository.delete(permission);
+		return true;
+	}
+	@Transactional
+	public List<Permission> findAll(){
+		return permissionRepository.findAll();
+	}
+	@Transactional
+	public Permission findPermissionById (Long id) {
+		return permissionRepository.findOne(id);
+	}
+	
+	
+
+
+	
+	public Permission findPermissionBy[persistance.name.toUpperFirst()/]AndPrivilege([persistance.name.toUpperFirst()/] [persistance.name.toLowerFirst()/], Privilege privilege) 
+	{
+	  return repository.findPermissionBy[persistance.name.toUpperFirst()/]AndPrivilege([persistance.name.toLowerFirst()/], privilege) ;
+	}
+ 
+ 
+
+	
+	public void addPermissionTo[persistance.name.toUpperFirst()/]EtPrivilege([persistance.name.toUpperFirst()/] [persistance.name.toLowerFirst()/], Privilege privilege, boolean create, boolean update, boolean delete) {
+    	 
+		 PermissionPK pk = new PermissionPK() ;
+		 pk.setIdPrivilege(privilege.getId());
+		 pk.setId[persistance.name.toUpperFirst()/]([persistance.name.toLowerFirst()/].getId());
+		 permission.setPermissionPK(pk);
+		 permission.setCreate(create);
+ 		 permission.setDelete(delete);
+ 		 permission.setUpdate(update);
+ 		 permission.set[persistance.name.toUpperFirst()/]([persistance.name.toLowerFirst()/]);
+ 		 permission.setPrivilege(privilege);
+ 		
+ 		 repository.save(permission) ;
+ 		   
+	}
+
+
+
+	
+	public List<Permission> all[persistance.name.toUpperFirst()/]Permissions([persistance.name.toUpperFirst()/] [persistance.name.toLowerFirst()/])
+{
+	 Set <Privilege> privileges = [persistance.name.toLowerFirst()/].getRole().getPrivileges() ;
+	 Set <Privilege> prvs=new HashSet<Privilege>() ;
+	List <Permission> permissions= new ArrayList<Permission>() ; 
+	for(Privilege p:privileges) prvs.add(p) ;
+	 for (Privilege p : prvs)
+	   {
+		 if(p.getPrivilegeSup()!=null)  permissions.add(findPermissionBy[persistance.name.toUpperFirst()/]AndPrivilege([persistance.name.toLowerFirst()/], p)) ;
+	    }
+	 return permissions ;
+	}
+
+
+
+
+	
+}
+
+
+[/file]
+[/template]

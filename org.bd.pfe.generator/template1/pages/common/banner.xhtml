@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+
+	<p:panel id="bannerPnl" styleClass="panelBanner">
+
+		<p:panelGrid columns="5">
+
+			<h:form>
+				<h:panelGroup>
+					<p:graphicImage   value="/template1/images/img/bd.png"   styleClass="sprite-logo"></p:graphicImage>
+                    <h:outputText styleClass="siat-sce" value="Business and Decision " />
+				</h:panelGroup>
+			</h:form>
+
+			<h:panelGroup> 	<div class="service-icons"> </div> </h:panelGroup>
+			<h:panelGroup>
+				<div class="headerLabel">
+					<h:outputText styleClass="sprite sprite-profil" />
+					<p:outputLabel value="Logged user" />
+				</div>
+				<div class="contentLabel">
+					<p:outputLabel value=" Amenallah kraiem" />
+				</div>
+			</h:panelGroup>
+			<h:panelGroup>
+				<p:graphicImage value="/template1/images/Tunisia.png" 	styleClass="sprite-blazon"></p:graphicImage>
+			</h:panelGroup>
+			<h:panelGroup>
+				<h:form id="bannerForm">
+					 
+					<h:commandLink action="#{loginBean.doLogout}" > <i class="sprite sprite-logout"></i> Logout </h:commandLink>
+							
+				</h:form>
+			</h:panelGroup>
+
+		</p:panelGrid>
+
+	</p:panel>
+	<h:panelGroup styleClass="ajaxloader">
+		<p:ajaxStatus>
+			<f:facet name="start">
+				<p:graphicImage value="/template1/images/ajax-loader.gif" />
+			</f:facet>
+		</p:ajaxStatus>
+	</h:panelGroup>
+</ui:composition>
+
+
+</html>

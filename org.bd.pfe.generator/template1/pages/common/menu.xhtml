@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+
+	<h:form id="menuForm">     <p:panelMenu model="#{dynamicMenuBean.model}" />  </h:form>
+
+	<p:dialog closeOnEscape="true" modal="true" widgetVar="modDia"
+		appendToBody="true" styleClass="dialogLoading" id="dialogLoadingMenu"
+		header="Chargement en cours" draggable="false" closable="false"
+		resizable="false">
+	<center> <p:graphicImage value="/images/loading.gif" style="height:20px;" /> </center>
+	</p:dialog>
+
+</ui:composition>
+
+</html>
