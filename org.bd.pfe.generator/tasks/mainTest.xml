@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project default="mainTest" name="org.bd.pfe.generator">
-    <property name="ECLIPSE_HOME" value="F:/engineer formation/eclipse-luna-jbt-32/eclipse"/>
-    <property name="ECLIPSE_WORKSPACE" value="E:/AcceleoWSgit"/>
+    <property name="ECLIPSE_HOME" value="../../../../Documents/5infoB3/JEE Spring EMF/spring4/eclipse-luna-jbt-32/eclipse"/>
+    <property name="ECLIPSE_WORKSPACE" value="D:/NewWorkspaceMetaModelAcceleoPfeNewWithGit"/>
 
     <!-- The classpath with only the dependencies used by the project -->
     <path id="org.bd.pfe.generator.libraryclasspath">

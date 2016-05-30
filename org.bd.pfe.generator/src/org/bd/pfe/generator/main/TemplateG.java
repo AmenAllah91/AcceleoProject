@@ -341,9 +341,6 @@ public class TemplateG extends AbstractAcceleoGenerator {
     @Override
     public void registerPackages(ResourceSet resourceSet) {
         super.registerPackages(resourceSet);
-        if (!isInWorkspace(Generator.GeneratorPackage.class)) {
-            resourceSet.getPackageRegistry().put(Generator.GeneratorPackage.eINSTANCE.getNsURI(), Generator.GeneratorPackage.eINSTANCE);
-        }
         
         /*
          * If you want to change the content of this method, do NOT forget to change the "@generated"

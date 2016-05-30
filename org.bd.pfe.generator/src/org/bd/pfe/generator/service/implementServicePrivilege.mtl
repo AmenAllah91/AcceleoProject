@@ -3,10 +3,10 @@
 [import org::bd::pfe::generator::persistance::packagePath /]
 
 
-[template public generateImplementServicePrivilege(persistance :PersistanceObject)]
+[template public generateImplementServicePrivilege(persistance :PersistanceObject){packageName : String = persistance.eContainer(Application)._package;}]
 
-[file('/pfe-service/src/main/java/'.concat(persistance.eContainer(PersistanceModel).eContainer(Application)._package.convertPackageToPath() .concat('/implement/')).concat('PrivilegeServiceImplement').concat('.java'),false,'UTF-8')]
-package [persistance.eContainer(PersistanceModel).eContainer(Application)._package.concat('.implement')/];
+[file(persistance.eContainer(Application).name.concat('-service/src/main/java/').concat(packageName.convertPackageToPath().concat('/implement/')).concat('PrivilegeServiceImplement').concat('.java'),false,'UTF-8')]
+package [packageName.concat('.implement')/];
 
 import java.util.*;
 
@@ -16,11 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.service')/].PermissionService;
-import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.repository').concat('.PrivilegeRepository')/];
-import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.persistance.*')/];
-import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.service')/].PrivilegeService;
-
+import [packageName.concat('.service')/].PermissionService;
+import [packageName.concat('.repository').concat('.PrivilegeRepository')/];
+import [packageName.concat('.persistance.*')/];
+import [packageName.concat('.service')/].PrivilegeService;
+import [packageName.concat('.exception')/].BDException;
 
  
 @Service
@@ -36,33 +36,44 @@ public class PrivilegeServiceImplement implements PrivilegeService {
 
 
 
-@Transactional
-	public Boolean createPrivilege(Privilege privilege){
-		privilegeRepository.save(privilege);
+    @Transactional
+	public Boolean createPrivilege(Privilege privilege)throws  BDException{
+		if(privilegeRepository.save(privilege)!=null){
 		return true;
+	   }else 
+        throw new BDException("");
+    }
+	
+	@Transactional
+	public Boolean updatePrivilege(Privilege privilege)throws  BDException{
+		if(privilegeRepository.save(privilege)!=null){
+		return true;
+        }else
+        throw new BDException("");
 	}
 	
 	@Transactional
-	public Boolean updatePrivilege(Privilege privilege){
-		privilegeRepository.save(privilege);
-		return true;
-	}
-	
-	@Transactional
-	 public Boolean deletePrivilege(Privilege privilege){
+	 public Boolean deletePrivilege(Privilege privilege)throws  BDException{
 		privilegeRepository.delete(privilege);
+       if(privilegeRepository.findOne(privilege.getId())!=null){
 		return true;
-	}
+	    }else 
+        throw new BDException("");
+    }
 	@Transactional
 	public List<Privilege> findAll(){
 		return privilegeRepository.findAll();
 	}
 	@Transactional
-	public Privilege findPrivilegeById (Long id) {
+	public Privilege findPrivilegeById (Long id) throws  BDException{
+       if(privilegeRepository.findOne(id)!=null){
+        throw new BDException("");
+      }
+      else{
 		return privilegeRepository.findOne(id);
 	}
 	
-
+}
 
 	
 	public Boolean assign[persistance.name.toUpperFirst()/]ToPrivilege([persistance.name.toUpperFirst()/]  [persistance.name.toLowerFirst()/] ,Privilege privilege ,Boolean create , Boolean delete  ,  Boolean update)

@@ -3,10 +3,10 @@
 [import org::bd::pfe::generator::persistance::packagePath /]
 
 
-[template public generateImplementServiceRole(persistance :PersistanceObject)]
+[template public generateImplementServiceRole(persistance :PersistanceObject){packageName : String = persistance.eContainer(Application)._package;}]
 
-[file('/pfe-service/src/main/java/'.concat(persistance.eContainer(PersistanceModel).eContainer(Application)._package.convertPackageToPath() .concat('/implement/')).concat('RoleServiceImplement').concat('.java'),false,'UTF-8')]
-package [persistance.eContainer(PersistanceModel).eContainer(Application)._package.concat('.implement')/];
+[file(persistance.eContainer(Application).name.concat('-service/src/main/java/').concat(packageName.convertPackageToPath().concat('/implement/')).concat('RoleServiceImplement').concat('.java'),false,'UTF-8')]
+package [packageName.concat('.implement')/];
 
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import [persistance.eContainer(PersistanceModel).eContainer(Application)._packag
 import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.persistance').concat('.Privilege')/];
 import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.persistance').concat('.Role')/];
 import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.service')/].RoleService;
+import [packageName.concat('.exception')/].BDException;
 
 
 @Service
@@ -30,30 +31,45 @@ public class RoleServiceImplement implements RoleService {
 	}
 
 	@Transactional
-	public Boolean createRole(Role role){
-		roleRepository.save(role);
+	public Boolean createRole(Role role)throws  BDException{
+		if(roleRepository.save(role)!=null){
 		return true;
-	}
+	}else{
+        throw new BDException("");
+      }
+    }
 	
 	@Transactional
-	public Boolean updateRole(Role role){
-		roleRepository.save(role);
+	public Boolean updateRole(Role role)throws  BDException{
+		if(roleRepository.save(role)!=null){
 		return true;
-	}
+	    }else
+         throw new BDException("");
+    }
 	
 	@Transactional
-	 public Boolean deleteRole(Role role){
+	 public Boolean deleteRole(Role role)throws  BDException{
 		roleRepository.delete(role);
+        if(roleRepository.findOne(role.getId())!=null){
 		return true;
+        }else {
+          throw new BDException("");
+        }
+        
 	}
 	@Transactional
 	public List<Role> findAll(){
 		return roleRepository.findAll();
 	}
 	@Transactional
-	public Role findRoleById (Long id) {
-		return roleRepository.findOne(id);
-	}
+	public Role findRoleById (Long id) throws  BDException{
+		if(roleRepository.findOne(id)!= null){
+        return roleRepository.findOne(id);
+	}else {
+         throw new BDException("");
+     }
+    }
+
 	@Transactional
  public Role  findRoleByRole(String role)  
     {

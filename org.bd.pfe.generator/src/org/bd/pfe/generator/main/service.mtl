@@ -9,6 +9,7 @@
 [import org::bd::pfe::generator::service::implementServicePermission /]
 [import org::bd::pfe::generator::service::implementServicePrivilege /]
 [import org::bd::pfe::generator::service::implementServiceRole/]
+[import org::bd::pfe::generator::exception::generateClassException/]
 
 [template public service(model : Application)]
 	 
@@ -16,6 +17,7 @@
 [for (it : PersistanceObject | model.persistanceModel.persiatnceObjets)]
 	[it.generateService()/]
     [it.generateImplement()/]
+    [it.generateClassException()/]
     [if(it.isAuthentification)]
     [it.generateServicePermission()/]
     [it.generateServicePrivilege()/]

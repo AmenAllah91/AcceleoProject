@@ -9,6 +9,7 @@ package [packageName.concat('.service')/];
 import java.util.List;
 import [packageName.concat('.persistance').concat('.Role')/];
 import [packageName.concat('.persistance').concat('.Privilege')/];
+import [packageName.concat('.exception')/].BDException;
 
 /**
  * The Interface   RoleService .
@@ -24,7 +25,7 @@ public interface RoleService {
          * @param role the instance of Role to be recorded.
          * @return indicates whether the create method succeds or fails.
          */ 
-         Boolean createRole(Role role);
+         Boolean createRole(Role role)throws  BDException;
 
          /**
          *
@@ -32,7 +33,7 @@ public interface RoleService {
          * @param privilege the record of Role to be updated.
          * @return indicates whether the update method succeds or fails.
          */
-	     Boolean updateRole(Role role);
+	     Boolean updateRole(Role role)throws  BDException;
 
         /**
          *
@@ -40,7 +41,7 @@ public interface RoleService {
          * @param privilege the record of Privilege to be removed.
          * @return indicates whether the delete method succeds or fails
          */
-	     Boolean deleteRole(Role role);
+	     Boolean deleteRole(Role role)throws  BDException;
          
          /**
          *
@@ -57,7 +58,7 @@ public interface RoleService {
 		 * @return the record of Permission having the id value retrieved from the database.
          */
 
-	     Role findRoleById (Long id);
+	     Role findRoleById (Long id)throws  BDException;
  
          /**
          *
