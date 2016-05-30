@@ -129,7 +129,9 @@ public class PrivilegeServiceImplement implements PrivilegeService {
 		   }
 		   return privilegeFils ;
 	}
- 	 
+ 	 //[protected (' : you can write your own code')]
+			
+		//[/protected]
 }
 
 [/file]

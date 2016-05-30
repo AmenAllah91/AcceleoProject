@@ -545,6 +545,9 @@ this.[source.name.toLowerFirst()/]s=[source.name.toLowerFirst()/]s;
 	}
 
 [/if]
+         //[protected (' : you can write your own code')]
+			
+		//[/protected]
  } 
 [/file]
 [/template]

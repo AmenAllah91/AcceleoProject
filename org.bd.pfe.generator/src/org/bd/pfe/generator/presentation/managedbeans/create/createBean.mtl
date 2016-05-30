@@ -185,6 +185,10 @@ public String doCreate()
 		return null;
 		}
  [/if] 
+
+         //[protected (' : you can write your own code')]
+			
+		//[/protected]
 }
 [/file]
 [/template]

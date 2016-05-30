@@ -147,6 +147,10 @@ private  PasswordEncoder passwordEncoder ;
 }
 
 [/if]
+
+         //[protected (' : you can write your own code')]
+			
+		//[/protected]
 }
 
 	
@@ -213,7 +217,9 @@ public class [classe.name.toUpperFirst().concat('ServiceImplement')/] implements
 	}else
          throw new BDException("");
     }
-	
+	//[protected (' : you can write your own code')]
+			
+		//[/protected]
 	
 }
 
@@ -245,7 +251,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 		}
 		 	return (UserDetails) [p.name.toLowerFirst()/];
 	}
-
+        //[protected (' : you can write your own code')]
+			
+		//[/protected]
 }
 
 [/file]
