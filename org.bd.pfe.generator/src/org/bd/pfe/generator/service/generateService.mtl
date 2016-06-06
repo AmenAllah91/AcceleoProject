@@ -12,6 +12,7 @@ package [packageName.concat('.service')/];
 import java.util.List;
 
 import [packageName.concat('.persistance')/].*;
+import [packageName.concat('.exception')/].BDException;
 
 [if(persistance.isAuthentification)]
 import [persistance.eContainer(PersistanceModel).eContainer(Application)._package .concat('.persistance')/].PasswordResetToken;
@@ -33,7 +34,7 @@ public interface [persistance.name.toUpperFirst().concat('Service')/]{
          * @return indicates whether the create method succeds or fails.
          */ 
 
-	     Boolean create[persistance.name.toUpperFirst()/]([persistance.name.toUpperFirst()/] [persistance.name.toLowerFirst()/]);
+	     Boolean create[persistance.name.toUpperFirst()/]([persistance.name.toUpperFirst()/] [persistance.name.toLowerFirst()/])throws  BDException;
 
          /**
          *
@@ -41,7 +42,7 @@ public interface [persistance.name.toUpperFirst().concat('Service')/]{
          * @param [persistance.name.toLowerFirst()/] the record of [persistance.name.toUpperFirst()/] to be updated.
          * @return indicates whether the update method succeds or fails.
          */
-	     Boolean update[persistance.name.toUpperFirst()/]([persistance.name.toUpperFirst()/] [persistance.name.toLowerFirst()/]);
+	     Boolean update[persistance.name.toUpperFirst()/]([persistance.name.toUpperFirst()/] [persistance.name.toLowerFirst()/])throws  BDException;
          
          /**
          *
@@ -49,7 +50,7 @@ public interface [persistance.name.toUpperFirst().concat('Service')/]{
          * @param [persistance.name.toLowerFirst()/] the record of [persistance.name.toUpperFirst()/] to be removed.
          * @return indicates whether the delete method succeds or fails
          */
-	     Boolean delete[persistance.name.toUpperFirst()/]([persistance.name.toUpperFirst()/] [persistance.name.toLowerFirst()/]);
+	     Boolean delete[persistance.name.toUpperFirst()/]([persistance.name.toUpperFirst()/] [persistance.name.toLowerFirst()/])throws  BDException;
         
          /**
          *
@@ -64,7 +65,7 @@ public interface [persistance.name.toUpperFirst().concat('Service')/]{
          * @param id 
 		 * @return the record of [persistance.name.toUpperFirst()/] having the id value retrieved from the database.
          */
-	     [persistance.name.toUpperFirst()/] find[persistance.name.toUpperFirst()/]ById (Long id); 
+	     [persistance.name.toUpperFirst()/] find[persistance.name.toUpperFirst()/]ById (Long id)throws  BDException; 
          
 
          [if(persistance.isAuthentification)]
@@ -173,6 +174,7 @@ public interface [persistance.name.toUpperFirst().concat('Service')/]{
 [file(classe.eContainer(Application).name.concat('-service/src/main/java/').concat(packageName.convertPackageToPath() .concat('/service/')).concat(classe.name.toUpperFirst().concat('Service.java')),false,'UTF-8')]
 package [packageName.concat('.service')/];
 import [packageName .concat('.persistance')/].[classe.name/];
+import [packageName.concat('.exception')/].BDException;
 import java.util.List;
 
 
@@ -184,7 +186,7 @@ public interface [classe.name.toUpperFirst().concat('Service')/]{
          * @param [classe.name.toLowerFirst()/] the instance of [classe.name.toUpperFirst()/] to be recorded.
          * @return indicates whether the create method succeds or fails.
          */ 
-	     Boolean create[classe.name.toUpperFirst()/]([classe.name.toUpperFirst()/] [classe.name.toLowerFirst()/]);
+	     Boolean create[classe.name.toUpperFirst()/]([classe.name.toUpperFirst()/] [classe.name.toLowerFirst()/])throws  BDException;
 
 		/**
          *
@@ -192,7 +194,7 @@ public interface [classe.name.toUpperFirst().concat('Service')/]{
          * @param [classe.name.toLowerFirst()/] the record of [classe.name.toUpperFirst()/] to be updated.
          * @return indicates whether the update method succeds or fails.
          */
-	     Boolean update[classe.name.toUpperFirst()/]([classe.name.toUpperFirst()/] [classe.name.toLowerFirst()/]);
+	     Boolean update[classe.name.toUpperFirst()/]([classe.name.toUpperFirst()/] [classe.name.toLowerFirst()/])throws  BDException;
 		
 		/**
          *
@@ -215,7 +217,7 @@ public interface [classe.name.toUpperFirst().concat('Service')/]{
          * @param id 
 		 * @return the record of [classe.name.toUpperFirst()/] having the id value retrieved from the database.
          */
-	     [classe.name.toUpperFirst()/] find[classe.name.toUpperFirst()/]ById (Long id); 
+	     [classe.name.toUpperFirst()/] find[classe.name.toUpperFirst()/]ById (Long id)throws  BDException; 
 
 
 
@@ -225,10 +227,4 @@ public interface [classe.name.toUpperFirst().concat('Service')/]{
 }
 [/file]
 [/template]
-[comment][template public generateServiceRole(persistance :PersistanceObject)]
-[if(persistance.isAuthentification)]
-[persistance.generateServicePermission()/]
-[persistance.generateServicePrivilege()/]
-[persistance.generateServiceRole()/]
-[/if]
-[/template][/comment]
+

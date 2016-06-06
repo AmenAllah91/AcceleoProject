@@ -142,6 +142,10 @@ public class [persistance.name.toUpperFirst()/] implements Serializable {
  	public void set[persistance.assoctiation.target.name.toUpperFirst()/]([persistance.assoctiation.target.name.toUpperFirst()/]  [persistance.assoctiation.target.name.toLowerFirst()/] ){
 	this.  [persistance.assoctiation.target.name.toLowerFirst()/]= [persistance.assoctiation.target.name.toLowerFirst()/];
 	}	
+
+         //[protected (' : you can write your own code')]
+			
+		//[/protected]
 }
 [/file]
 

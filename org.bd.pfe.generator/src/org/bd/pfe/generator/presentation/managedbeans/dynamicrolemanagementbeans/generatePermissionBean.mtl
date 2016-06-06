@@ -81,10 +81,14 @@ import  [packageName/].service.UserService;
 		{
 		 
            for(Permission p : userPermissions)
-           {
-        	    permissionService.createPermission(p);
+            {
+        	    try {
+					permissionService.createPermission(p);
+				} catch (BDException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
            }
-
         }
 	 
  

@@ -165,7 +165,14 @@ public String doCreate()
 	    {
 		['byte'.concat('[]')/] photo = IOUtils.toByteArray(part.getInputStream());
 		[create.target.name.toLowerFirst()/].setPhoto(photo);
-		[create.target.name.toLowerFirst().concat('Service')/].update[create.target.name.toUpperFirst()/]([create.target.name.toLowerFirst()/]);
+        
+        try {
+			[create.target.name.toLowerFirst().concat('Service')/].update[create.target.name.toUpperFirst()/]([create.target.name.toLowerFirst()/]);
+		} catch (BDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return null;
 	    }
 	
@@ -185,6 +192,10 @@ public String doCreate()
 		return null;
 		}
  [/if] 
+
+         //[protected (' : you can write your own code')]
+			
+		//[/protected]
 }
 [/file]
 [/template]

@@ -12,6 +12,7 @@ import [packageName.concat('.persistance').concat('.Permission')/];
 import [packageName.concat('.persistance').concat('.Privilege')/];
 
 import [packageName.concat('.persistance')/].[persistance.name.toUpperFirst()/];
+import [packageName.concat('.exception')/].BDException;
 
 /**
  * The Interface  PermissionService .
@@ -29,7 +30,7 @@ public interface PermissionService {
          * @param permission the instance of Permission to be recorded.
          * @return indicates whether the create method succeds or fails.
          */ 
-	     Boolean createPermission(Permission permission);
+	     Boolean createPermission(Permission permission)throws  BDException;
 	    
          /**
          *
@@ -39,7 +40,7 @@ public interface PermissionService {
          */
 
 
-         Boolean updatePermission(Permission permission);
+         Boolean updatePermission(Permission permission)throws  BDException;
 	    
          /**
          *
@@ -64,11 +65,11 @@ public interface PermissionService {
 		 * @return the record of Permission having the id value retrieved from the database.
          */
 
-          Permission findPermissionById (Long id);
+          Permission findPermissionById (Long id)throws  BDException;
 
          /**
          *
-         * This method returns the one record of permission by ID.
+         * This method returns the one record of permission by [persistance.name.toUpperFirst()/] and privilege.
          * @param [persistance.name.toLowerFirst()/]
          * @param privilege
 		 * @return the record of Permission having the [persistance.name.toUpperFirst()/] value and privilege value retrieved from the database.

@@ -105,7 +105,10 @@ public class VerificationToken {
 	public void set[persistance.name.toUpperFirst()/]([persistance.name.toUpperFirst()/] [persistance.name.toLowerFirst()/]) {
 		this.[persistance.name.toLowerFirst()/] = [persistance.name.toLowerFirst()/];
 	}
-	
+	    
+         //[protected (' : you can write your own code')]
+			
+		//[/protected]
 }
 	
 
@@ -218,6 +221,10 @@ public class PasswordResetToken {
 	public void set[persistance.name.toUpperFirst()/]([persistance.name.toUpperFirst()/] [persistance.name.toLowerFirst()/]) {
 		this.[persistance.name.toLowerFirst()/] = [persistance.name.toLowerFirst()/];
 	}
+   
+       //[protected (' : you can write your own code')]
+			
+		//[/protected]
     
 }
 	

@@ -197,6 +197,9 @@ return true;
 
 
 }
+         //[protected (' : you can write your own code')]
+			
+		//[/protected]
 }
 [/file]
 [/template]

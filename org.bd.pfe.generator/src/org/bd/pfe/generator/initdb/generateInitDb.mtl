@@ -28,11 +28,11 @@ import [packageName/].service.[p.name.toUpperFirst()/]Service   ;
 import [packageName/].service.PermissionService;
 import [packageName/].service.PrivilegeService;
 import [packageName/].service.RoleService;
- 
+ import [packageName.concat('.exception')/].BDException;
 
 public class InitDb {
  
-	public static void main(String['[]'/] args) {
+	public static void main(String['[]'/] args)throws BDException {
 		   ApplicationContext ctx1 =new AnnotationConfigApplicationContext(JavaConfig.class) ;
 		    PrivilegeService privilegeService = (PrivilegeService) ctx1.getBean("privilegeServiceImplement") ;
 		    RoleService roleService  =(RoleService) ctx1.getBean("roleServiceImplement") ;

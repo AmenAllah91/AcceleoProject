@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="Generator_0.1.0.201511282326.jar"/>
 	<classpathentry kind="lib" path="Generator.edit_1.0.0.201511282326.jar"/>
 	<classpathentry kind="lib" path="Generator.editor_1.0.0.201511282326.jar"/>
+	<classpathentry kind="lib" path="google-java-format-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
