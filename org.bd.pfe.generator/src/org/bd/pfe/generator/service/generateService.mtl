@@ -118,6 +118,16 @@ public interface [persistance.name.toUpperFirst().concat('Service')/]{
          */
 	     void createPasswordResetTokenForUser([persistance.name.toUpperFirst()/] [persistance.name.toLowerFirst()/], String token);
 	     
+  
+	     /**
+         *
+         * This method returns user based on user 's email. 
+         * @param email.
+		 * @return indicates if the method succeeds or fails.
+         */
+	     public [persistance.name.toUpperFirst()/] find[persistance.name.toUpperFirst()/]ByEmail(String email);
+	     
+
          /**
          * 
 	     * This method retrieves the PasswordResetToken record which token value equals the method parameter. 

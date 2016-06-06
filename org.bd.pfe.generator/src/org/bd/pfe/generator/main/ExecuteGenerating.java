@@ -7,13 +7,16 @@ import org.bd.pfe.generator.presentation.template.CopyFile;
 public class ExecuteGenerating {
 
 	public static void main(String[] args) {
-		try {
-			CopyFile.createRepertoire(System.getProperty("user.dir")+"/template1" , "C:/Users/amena/Desktop/Projet/PFE/PFE-web/src/main/webapp/template1");
-		} catch (IOException e1) {
-			 e1.printStackTrace();
-		}
+ 	try  {
+ 			CopyFile.createRepertoire(System.getProperty("user.dir")+"/template1" , "E:/Projects/Projet/pfe/pfe-web/src/main/webapp/template1");
+ 	    	} 
+ 	catch (IOException e1)
+        	{
+ 			 e1.printStackTrace();
+        	}
 		
-		Main.main(args);
+ 		Main.main(args);
+ 		GenerateProcess.main(args);
 	}
 
 }

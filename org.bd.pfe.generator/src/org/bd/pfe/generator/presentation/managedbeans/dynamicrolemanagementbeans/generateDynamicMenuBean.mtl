@@ -70,7 +70,7 @@ public class DynamicMenuBean {
 					if(p1.getPrivilegeSup()!=null &&  p1.getPrivilegeSup()==p) 
 					{    
 						item=new DefaultMenuItem(p1.getName()) ;
-					    item.setUrl("http://localhost:8080/PFE-Web/securePages/privileges/"+p1.getUrl());
+					    item.setUrl("http://localhost:8080/pfe-Web/securePages/"+p1.getUrl()+"/"+"index.jsf");
 						secondSubmenu.addElement(item); 
 						
 					}

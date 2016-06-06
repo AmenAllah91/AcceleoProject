@@ -1,10 +1,9 @@
 [comment encoding = UTF-8 /]
 [module generateManageRolePages('http://www.businessdecision.fr/Generator')]
 
-
 [template public generateManageRolePages(persistantObject : PersistanceObject)]
 
-[file ('pfe-web/src/main/webapp/securePages/privileges/gestionRoles.xhtml', false, 'UTF-8')]
+[file ('pfe-web/src/main/webapp/securePages/gestionRoles/index.xhtml', false, 'UTF-8')]
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -30,7 +29,7 @@
 
 </ui:composition>
 [/file]
-[file ('pfe-web/src/main/webapp/securePages/create/listRoles.xhtml', false, 'UTF-8')]
+[file ('pfe-web/src/main/webapp/securePages/gestionRoles/list.xhtml', false, 'UTF-8')]
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -112,7 +111,7 @@
  
 </ui:composition>
 [/file]
-[file ('pfe-web/src/main/webapp/securePages/create/CreateRole.xhtml', false, 'UTF-8')]
+[file ('pfe-web/src/main/webapp/securePages/gestionRoles/Create.xhtml', false, 'UTF-8')]
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -151,7 +150,7 @@
  
 </ui:composition>
 [/file]
-[file ('pfe-web/src/main/webapp/securePages/edit/editRoles.xhtml', false, 'UTF-8')]
+[file ('pfe-web/src/main/webapp/securePages/gestionRoles/edit.xhtml', false, 'UTF-8')]
  <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -160,24 +159,18 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrought"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-	
 	<h:form id="formC" rendered="#{roleBean.updateRole}" >
 	 				<p:panel header="Affectation">
-					<p:pickList id="pick" value="#{roleBean.privilegesDualList}"
-						var="privilege" itemLabel="#{privilege.privilege}" itemValue="#{privilege}"
+					<p:pickList id="pick" value="#{roleBean.privilegesDualList}" var="privilege" itemLabel="#{privilege.privilege}" itemValue="#{privilege}"
 						converter="#{privilegeConverter}" styleClass="pf-panel-grid" style="margin-bottom:10px">
-
-						<f:facet name="sourceCaption">tous les privileges</f:facet>
+                        <f:facet name="sourceCaption">tous les privileges</f:facet>
 						<f:facet name="targetCaption">mes privileges</f:facet>
-
-					</p:pickList>
+                   </p:pickList>
 
 
 					<p:commandButton value="Submit"  ajax="false" style="margin-top:5px" action="#{roleBean.doAssignPrivilegesToRole(roleBean.roleToUpdate)}">  	</p:commandButton>
 				    </p:panel>
-	 
-	 
-	 	</h:form>
+ </h:form>
  
 </ui:composition>
 [/file]
