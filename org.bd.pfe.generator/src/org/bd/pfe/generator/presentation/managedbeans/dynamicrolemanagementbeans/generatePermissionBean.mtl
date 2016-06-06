@@ -18,7 +18,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
-
+import  [packageName.concat('.exception')/].BDException;
 import  [packageName/].persistance.Permission;
 import  [packageName/].persistance.PermissionPK;
 import  [packageName/].persistance.Privilege;

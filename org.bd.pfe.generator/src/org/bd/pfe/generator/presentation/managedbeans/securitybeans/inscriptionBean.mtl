@@ -25,6 +25,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import  [packageName.concat('.exception')/].BDException;
 import [packageName/].persistance.Role;
 import [packageName/].service.RoleService;
 import [packageName/].persistance.[persistantObject.name.toUpperFirst()/];
@@ -100,7 +101,13 @@ public class InscriptionBean {
 			[persistantObject.name.toLowerFirst()/].setAcountBloqued(true);
 			[persistantObject.name.toLowerFirst()/].setFirstLogin(true);
 			
-			[persistantObject.name.toLowerFirst()/]Service.create[persistantObject.name.toUpperFirst()/]([persistantObject.name.toLowerFirst()/]);
+            try {
+				[persistantObject.name.toLowerFirst()/]Service.create[persistantObject.name.toUpperFirst()/]([persistantObject.name.toLowerFirst()/]);
+			} catch (BDException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			
 			final String token = UUID.randomUUID().toString();
 			[persistantObject.name.toLowerFirst()/]Service.createVerificationTokenFor[persistantObject.name.toUpperFirst()/]([persistantObject.name.toLowerFirst()/], token);

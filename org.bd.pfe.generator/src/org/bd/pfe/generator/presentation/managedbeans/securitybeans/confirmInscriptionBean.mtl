@@ -17,7 +17,7 @@ import javax.faces.context.FacesContext;
 import [packageName/].persistance.[aPersistanceObject.name.toUpperFirst()/];
 import [packageName/].persistance.VerificationToken;
 import [packageName/].service.[aPersistanceObject.name.toUpperFirst()/]Service;
-
+import  [packageName.concat('.exception')/].BDException;
 @ManagedBean
 @RequestScoped
 public class ConfirmInscriptionBean {
@@ -41,7 +41,13 @@ public class ConfirmInscriptionBean {
 			[aPersistanceObject.name.toUpperFirst()/] [aPersistanceObject.name.toLowerFirst()/] = verificationToken.get[aPersistanceObject.name.toUpperFirst()/]();
 			[aPersistanceObject.name.toLowerFirst()/].setAcountActivated(true);
 			[aPersistanceObject.name.toLowerFirst()/].setAcountBloqued(false);
-			[aPersistanceObject.name.toLowerFirst()/]Service.update[aPersistanceObject.name.toUpperFirst()/]([aPersistanceObject.name.toLowerFirst()/]);
+            try {
+				[aPersistanceObject.name.toLowerFirst()/]Service.update[aPersistanceObject.name.toUpperFirst()/]([aPersistanceObject.name.toLowerFirst()/]);
+			} catch (BDException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Dear "+[aPersistanceObject.name.toLowerFirst()/].getLogin()+", your account has been successfully activated !", null);
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		} 

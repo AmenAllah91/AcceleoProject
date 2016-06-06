@@ -19,6 +19,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.model.DualListModel;
 
+import  [packageName.concat('.exception')/].BDException;
 import [packageName/].persistance.Privilege;
 import [packageName/].persistance.Role;
 import [packageName/].service.PrivilegeService;
@@ -169,7 +170,12 @@ public class RoleBean {
  			 }
  			 rolePrivileges2.addAll(rolePrivileges) ;
  			 role.setPrivileges(rolePrivileges2);
-			 roleService.updateRole(role) ;
+			 try {
+				roleService.updateRole(role) ;
+			} catch (BDException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			 updateRole=false ;
 		 }
 	 

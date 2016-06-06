@@ -10,7 +10,7 @@
 [import org::bd::pfe::generator::persistance::dynamicrolemanagemententities::generateRole/]
 [import org::bd::pfe::generator::persistance::generateToken /]
 [template public persistance(model : Application)]
-	
+
  
 [for (it : PersistanceObject | model.persistanceModel.persiatnceObjets)]
 	[it.generateEntity()/]

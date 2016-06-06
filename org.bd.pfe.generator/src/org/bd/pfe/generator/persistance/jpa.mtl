@@ -96,9 +96,9 @@ private [type.toString().convertToAttributes()/] [name.toLowerFirst()/];
 [for (assicationCalss : AssociationClass | persistance.eContainer(PersistanceModel).associationClass)]
 
 	[for (association : Association | persistance.eContainer(PersistanceModel).associations)]
-[if (assicationCalss.assoctiation=association)]
+[if (assicationCalss.assoctiation.name.equalsIgnoreCase(association.name))]
 
-	[if (assicationCalss.assoctiation.source=persistance or assicationCalss.assoctiation.target=persistance) ]
+	[if (assicationCalss.assoctiation.source.name.equalsIgnoreCase(persistance.name) or assicationCalss.assoctiation.target.name.equalsIgnoreCase(persistance.name)) ]
 		private List<[assicationCalss.name.toUpperFirst()/]> [assicationCalss.name.toLowerFirst()/]s;
 	[/if]
 
@@ -331,8 +331,8 @@ return [assicationCalss.name.toLowerFirst()/]s;
 		public void set[assicationCalss.name.toUpperFirst()/]s(List<[assicationCalss.name.toUpperFirst()/]> [assicationCalss.name.toLowerFirst()/]s){
 this.[assicationCalss.name.toLowerFirst()/]s=[assicationCalss.name.toLowerFirst()/]s;
 	}
-	[/if]
-
+	
+[/if]
 
 	[elseif (source.name.equalsIgnoreCase(current(PersistanceObject).name))]
 		[if (cardinalityTarget.toString().equalsIgnoreCase('One'))]

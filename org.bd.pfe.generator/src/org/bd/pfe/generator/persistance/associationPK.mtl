@@ -41,7 +41,7 @@ public class [persistance.name.toUpperFirst()/]PK implements Serializable {
 [/if]
 [/for]
 
-[for (att : Attributes | assoctiation.generateAttHeritage())]
+[for (att : Attributes | assoctiation.source.attributes)]
 [if (id)]
 	private [type.toString().convertToAttributes()/]  [name.toLowerFirst()/][persistance.assoctiation.source.name.toUpperFirst()/];
 [/if]
