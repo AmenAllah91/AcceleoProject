@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Generator:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Generator="http://www.businessdecision.fr/Generator" name="pfe" package="com.bd">
+  <persistanceModel>
+    <enumerations name="sexe">
+      <values name="F" lablelFr="Femme" lablelEn="Female"/>
+      <values name="M" lablelFr="Homme" lablelEn="Male"/>
+    </enumerations>
+    <persiatnceObjets name="User" superType="//@persistanceModel/@persiatnceObjets.5" isAuthentification="true">
+      <attributes name="competence"/>
+      <attributes name="sex" enumeration="//@persistanceModel/@enumerations.0"/>
+    </persiatnceObjets>
+    <persiatnceObjets name="Project">
+      <attributes name="Id" type="Long" unique="true" id="true" autoIncriment="true"/>
+      <attributes name="name"/>
+      <attributes name="state"/>
+      <attributes name="subject"/>
+      <attributes name="startDate" type="Date"/>
+      <attributes name="endDate" type="Date"/>
+    </persiatnceObjets>
+    <persiatnceObjets name="Task">
+      <attributes name="Id" type="Long" unique="true" id="true" autoIncriment="true"/>
+      <attributes name="name"/>
+      <attributes name="description"/>
+      <attributes name="state"/>
+      <attributes name="duration" type="Integer"/>
+    </persiatnceObjets>
+    <persiatnceObjets name="Advancement">
+      <attributes name="Id" type="Long" unique="true" id="true" autoIncriment="true"/>
+      <attributes name="description"/>
+      <attributes name="date" type="Date"/>
+    </persiatnceObjets>
+    <persiatnceObjets name="Administration" superType="//@persistanceModel/@persiatnceObjets.5" table="">
+      <attributes name="name"/>
+    </persiatnceObjets>
+    <persiatnceObjets name="Staff">
+      <attributes name="Id" type="Long" unique="true" id="true" autoIncriment="true"/>
+      <attributes name="name"/>
+      <attributes name="lastName"/>
+      <attributes name="cin"/>
+      <attributes name="email"/>
+      <attributes name="photo" type="Image"/>
+    </persiatnceObjets>
+    <persiatnceObjets name="WorkLeave">
+      <attributes name="Id" type="Long" unique="true" id="true" autoIncriment="true"/>
+      <attributes name="startDate" type="Date"/>
+      <attributes name="endDate" type="Date"/>
+    </persiatnceObjets>
+    <persiatnceObjets name="Salary">
+      <attributes name="Id" type="Long" unique="true" id="true" autoIncriment="true"/>
+      <attributes name="period" type="Integer"/>
+      <attributes name="amount" type="Integer"/>
+    </persiatnceObjets>
+    <associations name="projectTask" source="//@persistanceModel/@persiatnceObjets.1" target="//@persistanceModel/@persiatnceObjets.2" cardinalityTarget="Many" associationType="bidirectional"/>
+    <associations name="taskAdvancement" source="//@persistanceModel/@persiatnceObjets.2" target="//@persistanceModel/@persiatnceObjets.3" cardinalityTarget="Many" associationType="bidirectional"/>
+    <associations name="userProject" source="//@persistanceModel/@persiatnceObjets.0" target="//@persistanceModel/@persiatnceObjets.1" cardinalitySource="Many" cardinalityTarget="Many" associationType="bidirectional"/>
+    <associations name="administrationUser" source="//@persistanceModel/@persiatnceObjets.4" target="//@persistanceModel/@persiatnceObjets.0" cardinalityTarget="Many" associationType="bidirectional"/>
+    <associations name="supAdministration" source="//@persistanceModel/@persiatnceObjets.4" target="//@persistanceModel/@persiatnceObjets.4" cardinalitySource="Many"/>
+    <associations name="salaryUser" source="//@persistanceModel/@persiatnceObjets.7" target="//@persistanceModel/@persiatnceObjets.0" cardinalityTarget="Many" associationType="bidirectional"/>
+    <associations name="UserWorkLeave" source="//@persistanceModel/@persiatnceObjets.0" target="//@persistanceModel/@persiatnceObjets.6" cardinalitySource="Many" cardinalityTarget="Many" associationType="bidirectional"/>
+    <associationClass name="Report" assoctiation="//@persistanceModel/@associations.2"/>
+  </persistanceModel>
+  <process>
+    <actor name="Admin"/>
+    <subProcess name="Gestion User">
+      <creates name="createUser" attributes="//@persistanceModel/@persiatnceObjets.0/@attributes.0 //@persistanceModel/@persiatnceObjets.0/@attributes.1" target="//@persistanceModel/@persiatnceObjets.0"/>
+      <manages name="manageUser" attributes="//@persistanceModel/@persiatnceObjets.0/@attributes.0 //@persistanceModel/@persiatnceObjets.0/@attributes.1" all="true" target="//@persistanceModel/@persiatnceObjets.0"/>
+      <masterDeatails name="AffectationOfProjectsToUser" master="//@persistanceModel/@persiatnceObjets.0" details="//@persistanceModel/@persiatnceObjets.1" manages="//@process/@subProcess.0/@manages.0" attributesMaster="//@persistanceModel/@persiatnceObjets.0/@attributes.1 //@persistanceModel/@persiatnceObjets.0/@attributes.0" attributesDetails="//@persistanceModel/@persiatnceObjets.1/@attributes.1 //@persistanceModel/@persiatnceObjets.1/@attributes.2 //@persistanceModel/@persiatnceObjets.1/@attributes.3 //@persistanceModel/@persiatnceObjets.1/@attributes.4 //@persistanceModel/@persiatnceObjets.1/@attributes.5"/>
+      <masterDeatails name="AffectationWorkLeaveToUser" master="//@persistanceModel/@persiatnceObjets.0" details="//@persistanceModel/@persiatnceObjets.6" manages="//@process/@subProcess.0/@manages.0" attributesMaster="//@persistanceModel/@persiatnceObjets.0/@attributes.0 //@persistanceModel/@persiatnceObjets.0/@attributes.1" attributesDetails="//@persistanceModel/@persiatnceObjets.6/@attributes.2 //@persistanceModel/@persiatnceObjets.6/@attributes.1"/>
+      <simpleUseCases name="UserUseCase"/>
+    </subProcess>
+    <subProcess name="Gestion Task">
+      <creates name="CreateTask" attributes="//@persistanceModel/@persiatnceObjets.2/@attributes.1 //@persistanceModel/@persiatnceObjets.2/@attributes.3 //@persistanceModel/@persiatnceObjets.2/@attributes.4 //@persistanceModel/@persiatnceObjets.2/@attributes.2" target="//@persistanceModel/@persiatnceObjets.2"/>
+      <manages name="ManageTask" attributes="//@persistanceModel/@persiatnceObjets.2/@attributes.1 //@persistanceModel/@persiatnceObjets.2/@attributes.3 //@persistanceModel/@persiatnceObjets.2/@attributes.4 //@persistanceModel/@persiatnceObjets.2/@attributes.2" target="//@persistanceModel/@persiatnceObjets.2"/>
+      <masterDeatails name="AffectationOfAdvancementsToTasks" master="//@persistanceModel/@persiatnceObjets.2" details="//@persistanceModel/@persiatnceObjets.3" manages="//@process/@subProcess.1/@manages.0" attributesMaster="//@persistanceModel/@persiatnceObjets.2/@attributes.1 //@persistanceModel/@persiatnceObjets.2/@attributes.3 //@persistanceModel/@persiatnceObjets.2/@attributes.4 //@persistanceModel/@persiatnceObjets.2/@attributes.2" attributesDetails="//@persistanceModel/@persiatnceObjets.3/@attributes.1 //@persistanceModel/@persiatnceObjets.3/@attributes.2"/>
+    </subProcess>
+    <subProcess name="Gestion Project">
+      <creates name="CreateProject" attributes="//@persistanceModel/@persiatnceObjets.1/@attributes.1 //@persistanceModel/@persiatnceObjets.1/@attributes.2 //@persistanceModel/@persiatnceObjets.1/@attributes.3 //@persistanceModel/@persiatnceObjets.1/@attributes.4 //@persistanceModel/@persiatnceObjets.1/@attributes.5" target="//@persistanceModel/@persiatnceObjets.1"/>
+      <manages name="ManageProject" attributes="//@persistanceModel/@persiatnceObjets.1/@attributes.1 //@persistanceModel/@persiatnceObjets.1/@attributes.3 //@persistanceModel/@persiatnceObjets.1/@attributes.2 //@persistanceModel/@persiatnceObjets.1/@attributes.4 //@persistanceModel/@persiatnceObjets.1/@attributes.5" target="//@persistanceModel/@persiatnceObjets.1"/>
+      <masterDeatails name="AffectationTasksToProject" master="//@persistanceModel/@persiatnceObjets.1" details="//@persistanceModel/@persiatnceObjets.2" manages="//@process/@subProcess.2/@manages.0" attributesMaster="//@persistanceModel/@persiatnceObjets.1/@attributes.1 //@persistanceModel/@persiatnceObjets.1/@attributes.3 //@persistanceModel/@persiatnceObjets.1/@attributes.2 //@persistanceModel/@persiatnceObjets.1/@attributes.4 //@persistanceModel/@persiatnceObjets.1/@attributes.5"/>
+      <masterDeatails name="AffectationOfUserToProject" master="//@persistanceModel/@persiatnceObjets.1" details="//@persistanceModel/@persiatnceObjets.0" manages="//@process/@subProcess.2/@manages.0" attributesMaster="//@persistanceModel/@persiatnceObjets.1/@attributes.1 //@persistanceModel/@persiatnceObjets.1/@attributes.2 //@persistanceModel/@persiatnceObjets.1/@attributes.3 //@persistanceModel/@persiatnceObjets.1/@attributes.4 //@persistanceModel/@persiatnceObjets.1/@attributes.5" attributesDetails="//@persistanceModel/@persiatnceObjets.0/@attributes.0 //@persistanceModel/@persiatnceObjets.0/@attributes.1"/>
+      <simpleUseCases name="ProjectSimpleUseCase"/>
+    </subProcess>
+    <subProcess name="Gestion Administration">
+      <creates name="CreateAdministration" attributes="//@persistanceModel/@persiatnceObjets.4/@attributes.0" target="//@persistanceModel/@persiatnceObjets.4"/>
+      <manages name="ManageAdministration" attributes="//@persistanceModel/@persiatnceObjets.4/@attributes.0" all="true" target="//@persistanceModel/@persiatnceObjets.4"/>
+      <masterDeatails name="AffectationUserToAdministration" master="//@persistanceModel/@persiatnceObjets.4" details="//@persistanceModel/@persiatnceObjets.0" manages="//@process/@subProcess.0/@manages.0" attributesMaster="//@persistanceModel/@persiatnceObjets.4/@attributes.0" attributesDetails="//@persistanceModel/@persiatnceObjets.0/@attributes.0 //@persistanceModel/@persiatnceObjets.0/@attributes.1"/>
+    </subProcess>
+    <subProcess name="Gestion Advancement">
+      <creates name="CreateAdvancement" lablelFr="" attributes="//@persistanceModel/@persiatnceObjets.3/@attributes.1 //@persistanceModel/@persiatnceObjets.3/@attributes.2" target="//@persistanceModel/@persiatnceObjets.3"/>
+      <manages name="ManageAdvancement" lablelEn="" attributes="//@persistanceModel/@persiatnceObjets.3/@attributes.1 //@persistanceModel/@persiatnceObjets.3/@attributes.2" target="//@persistanceModel/@persiatnceObjets.3"/>
+    </subProcess>
+    <subProcess name="Gestion Staff">
+      <creates name="CreateStaff" attributes="//@persistanceModel/@persiatnceObjets.5/@attributes.1 //@persistanceModel/@persiatnceObjets.5/@attributes.2 //@persistanceModel/@persiatnceObjets.5/@attributes.3 //@persistanceModel/@persiatnceObjets.5/@attributes.4 //@persistanceModel/@persiatnceObjets.5/@attributes.5" target="//@persistanceModel/@persiatnceObjets.5"/>
+      <manages name="ManageStaff" attributes="//@persistanceModel/@persiatnceObjets.5/@attributes.1 //@persistanceModel/@persiatnceObjets.5/@attributes.2 //@persistanceModel/@persiatnceObjets.5/@attributes.3 //@persistanceModel/@persiatnceObjets.5/@attributes.4 //@persistanceModel/@persiatnceObjets.5/@attributes.5" target="//@persistanceModel/@persiatnceObjets.5"/>
+    </subProcess>
+    <subProcess name="Gestion Salary">
+      <creates name="CreateSalary" attributes="//@persistanceModel/@persiatnceObjets.7/@attributes.2 //@persistanceModel/@persiatnceObjets.7/@attributes.1" target="//@persistanceModel/@persiatnceObjets.7"/>
+      <manages name="ManageSalary" attributes="//@persistanceModel/@persiatnceObjets.7/@attributes.2 //@persistanceModel/@persiatnceObjets.7/@attributes.1" target="//@persistanceModel/@persiatnceObjets.7"/>
+      <masterDeatails name="AffectationUserToSalary" master="//@persistanceModel/@persiatnceObjets.7" details="//@persistanceModel/@persiatnceObjets.0" manages="//@process/@subProcess.6/@manages.0" attributesMaster="//@persistanceModel/@persiatnceObjets.7/@attributes.2 //@persistanceModel/@persiatnceObjets.7/@attributes.1" attributesDetails="//@persistanceModel/@persiatnceObjets.0/@attributes.0 //@persistanceModel/@persiatnceObjets.0/@attributes.1"/>
+    </subProcess>
+    <subProcess name="Gestion WorkLeave">
+      <creates name="CreateWorkLeave" lablelFr="" attributes="//@persistanceModel/@persiatnceObjets.6/@attributes.1 //@persistanceModel/@persiatnceObjets.6/@attributes.2" target="//@persistanceModel/@persiatnceObjets.6"/>
+      <manages name="ManageWorkLeave" attributes="//@persistanceModel/@persiatnceObjets.6/@attributes.1 //@persistanceModel/@persiatnceObjets.6/@attributes.2" target="//@persistanceModel/@persiatnceObjets.6"/>
+      <masterDeatails name="AffectationUserToWorkLeave" master="//@persistanceModel/@persiatnceObjets.6" details="//@persistanceModel/@persiatnceObjets.0" manages="//@process/@subProcess.7/@manages.0" attributesMaster="//@persistanceModel/@persiatnceObjets.6/@attributes.2 //@persistanceModel/@persiatnceObjets.6/@attributes.1" attributesDetails="//@persistanceModel/@persiatnceObjets.0/@attributes.0 //@persistanceModel/@persiatnceObjets.0/@attributes.1"/>
+    </subProcess>
+  </process>
+</Generator:Application>

@@ -4,7 +4,7 @@
 
 [template public generatePublicPages(application : Application)]
 
-[file ('pfe-web/src/main/webapp/template1/public/login.xhtml', false, 'UTF-8')]
+[file ('pfe-web/src/main/webapp/public/login.xhtml', false, 'UTF-8')]
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -82,7 +82,7 @@
 </h:body>
 </html>
 [/file]
-[file ('pfe-web/src/main/webapp/template1/public/register.xhtml', false, 'UTF-8')]
+[file ('pfe-web/src/main/webapp/public/register.xhtml', false, 'UTF-8')]
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -195,7 +195,7 @@
 
 
 
-[file ('pfe-web/src/main/webapp/template1/public/changePassword.xhtml', false, 'UTF-8')]
+[file ('pfe-web/src/main/webapp/public/changePassword.xhtml', false, 'UTF-8')]
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -274,7 +274,7 @@
 </h:body>
 </html>
 [/file]
-[file ('pfe-web/src/main/webapp/template1/public/confirmRegistration.xhtml', false, 'UTF-8')]
+[file ('pfe-web/src/main/webapp/public/confirmRegistration.xhtml', false, 'UTF-8')]
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"

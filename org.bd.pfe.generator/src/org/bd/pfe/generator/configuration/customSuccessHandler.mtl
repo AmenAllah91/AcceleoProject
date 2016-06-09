@@ -61,7 +61,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         }
         [persistentObject.name.toUpperFirst()/] [persistentObject.name.toLowerFirst()/] = [persistentObject.name.toLowerFirst()/]Service.findUserByLogin(username);
         if ([persistentObject.name.toLowerFirst()/].getFirstLogin() == true) {
-        	target = "/template1/public/changePassword.jsf?faces-redirect=true";
+        	target = "/public/changePassword.jsf?faces-redirect=true";
         } else 
        {
         	target = "/securePages/gestionRoles.jsf?faces-redirect=true";

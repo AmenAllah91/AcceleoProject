@@ -18,13 +18,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import [packageName/].configuration.JavaConfig;
  [for(p:PersistanceObject | persistance.eContainer(Application).persistanceModel.persiatnceObjets)]
-import [packageName/].persistance.[p.name.toUpperFirst()/]    ;
-[/for]
+import [packageName/].persistance.[p.name.toUpperFirst()/]    ;[/for]
+
 import [packageName/].persistance.Privilege;
 import [packageName/].persistance.Role;
 [for(p:PersistanceObject | persistance.eContainer(Application).persistanceModel.persiatnceObjets)]
-import [packageName/].service.[p.name.toUpperFirst()/]Service   ;
-[/for]
+import [packageName/].service.[p.name.toUpperFirst()/]Service   ;[/for]
 import [packageName/].service.PermissionService;
 import [packageName/].service.PrivilegeService;
 import [packageName/].service.RoleService;
@@ -32,8 +31,8 @@ import [packageName/].service.RoleService;
 
 public class InitDb {
  
-	public static void main(String['[]'/] args)throws BDException {
-		   ApplicationContext ctx1 =new AnnotationConfigApplicationContext(JavaConfig.class) ;
+	        public static void main(String['[]'/] args)throws BDException {
+		    ApplicationContext ctx1 =new AnnotationConfigApplicationContext(JavaConfig.class) ;
 		    PrivilegeService privilegeService = (PrivilegeService) ctx1.getBean("privilegeServiceImplement") ;
 		    RoleService roleService  =(RoleService) ctx1.getBean("roleServiceImplement") ;
 		    PermissionService permissionService = (PermissionService) ctx1.getBean("permissionServiceImplement") ;
@@ -43,64 +42,32 @@ public class InitDb {
             [/for]
 		    
 
-   [for(p:PersistanceObject | persistance.eContainer(Application).persistanceModel.persiatnceObjets)]
-               [if(p.isAuthentification)]	
-		    [p.name.toUpperFirst()/] user = new [p.name.toUpperFirst()/]() ;
-            [/if]
-  [/for]
-        
-		    user.setAcountActivated(true);
+            InitPrivileges.main(args);
+            [for(p:PersistanceObject | persistance.eContainer(Application).persistanceModel.persiatnceObjets)]   [if(p.isAuthentification)]	
+		    [p.name.toUpperFirst()/] user = new [p.name.toUpperFirst()/]() ;  [/if]       [/for]
+            user.setAcountActivated(true);
 		    user.setAcountBloqued(false);
 		    user.setLogin       ("test");
 		    user.setEmail       ("test@bd.com");
 		    user.setName       ("test");
 		    user.setLastName("test");
-		    user.setPwd          ("test");
+		    user.setPwd( passwordEncoder.encode("test") );
 		    user.setFirstLogin(false);
-		    user.setPwd(((BCryptPasswordEncoder) passwordEncoder).encode(user.getPwd()));
-		    
 		   
 		    
 		    
 	    	Role role=    new Role() ;
-	    	role.setRole("role  admin 1 ");
-	  
-	    	
-	    	 
-	    Privilege p     = new Privilege("gestion des utilisateurs" ,"");
-	    Privilege p1   = new Privilege("gestion des utilisateurs" ,"gestionUsers.jsf");
-        Privilege p2  = new Privilege("gestion des roles "           ,"gestionRoles.jsf");
-		Privilege p3  = new Privilege("gestion des permissions" ,"gestionPermissions.jsf");
-		
-		p1.setPrivilegeSup(p);
-		p2.setPrivilegeSup(p);
-		p3.setPrivilegeSup(p);
-		
-	  		Privilege p4 = new Privilege("gestions des projets","");
-		
-		Privilege p5 = new Privilege("gestions des projets" ,"gestionProjets.jsf");
-		Privilege p6= new Privilege("gestion des taches "   ,"gestionTasks.jsf");
-
-		
-		p5.setPrivilegeSup(p4);
-		p6.setPrivilegeSup(p4);
-		
-
-		privilegeService.createPrivilege(p) ;
-		privilegeService.createPrivilege(p1) ;
-		privilegeService.createPrivilege(p2) ;
-		privilegeService.createPrivilege(p3) ;
-		privilegeService.createPrivilege(p4) ;
-		privilegeService.createPrivilege(p5) ;
-		privilegeService.createPrivilege(p6) ;
-	    Set <Privilege> privileges= new HashSet<Privilege>() ;
-	    privileges.addAll((Collection<? extends Privilege>) privilegeService.findAll()) ;
-		role.setPrivileges(privileges);
-	    user.setRole(role);
-	    roleService.updateRole(role) ;
-         [if(persistance.isAuthentification)]  [persistance.name.toLowerFirst()/]Service.create[persistance.name.toUpperFirst()/](user) ;      [/if]
-  	    for(Privilege pr:user.getRole().getPrivileges())
-  		    	{
+	    	role.setRole("role  admin 1");
+	   
+	        Set <Privilege> privileges= new HashSet<Privilege>() ;
+	        privileges.addAll((Collection<? extends Privilege>) privilegeService.findAll()) ;
+	        role.setPrivileges(privileges);
+	        user.setRole(role);
+	        roleService.updateRole(role) ;
+            [if(persistance.isAuthentification)]  [persistance.name.toLowerFirst()/]Service.create[persistance.name.toUpperFirst()/](user) ;      [/if]
+  	      
+            for(Privilege pr:user.getRole().getPrivileges())
+  		    	{ 
  			        	if(pr.getPrivilegeSup()!=null) 	      permissionService.addPermissionToUserEtPrivilege(user,pr, true, true, true);
   			    }
 	    	

@@ -1,10 +1,8 @@
 package org.bd.pfe.generator.main;
 
 import java.io.IOException;
-
 import org.bd.pfe.generator.presentation.template.CopyFile;
 
-import com.google.googlejavaformat.java.Formatter;
 
 public class ExecuteGenerating {
 
@@ -20,5 +18,5 @@ public class ExecuteGenerating {
  		Main.main(args);
  		GenerateProcess.main(args);
 	}
-	//String formattedSource = new Formatter().formatSource("/pfe");
+ 
 }
